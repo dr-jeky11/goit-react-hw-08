@@ -1,30 +1,22 @@
-import { Formik, Form, Field, ErrorMessage } from "formik";
+import { useFormik } from "formik";
 import * as Yup from "yup";
+import LoadingButton from "@mui/lab/LoadingButton";
 
-import { useId } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
-import { addContact } from "../../redux/contactsOps";
+import { addContact } from "../../redux/contacts/operations";
 
 import s from "./ContactForm.module.css";
+
+import { selectLoading } from "../../redux/contacts/selectors";
+import { TextField } from "@mui/material";
 
 export default function ContactForm() {
   const dispatch = useDispatch();
 
-  const nameId = useId();
-  const numberId = useId();
+  const loading = useSelector(selectLoading);
 
-  const initialValues = {
-    name: "",
-    number: "",
-  };
-
-  const handleSubmit = (values, action) => {
-    dispatch(addContact({ ...values }));
-    action.resetForm();
-  };
-
-  const FeedbackSchema = Yup.object().shape(
+  const ValidationSchema = Yup.object().shape(
     {
       name: Yup.string("Must be a string!")
         .min(3, "Too short!")
@@ -40,28 +32,60 @@ export default function ContactForm() {
     { strict: true }
   );
 
+  const formik = useFormik({
+    initialValues: {
+      name: "",
+      number: "",
+    },
+
+    validationSchema: ValidationSchema,
+    onSubmit: (values, action) => {
+      dispatch(addContact({ ...values }));
+      action.resetForm();
+    },
+  });
+
   return (
-    <Formik
-      initialValues={initialValues}
-      onSubmit={handleSubmit}
-      validationSchema={FeedbackSchema}>
-      <Form noValidate className={s.container}>
-        <div className={s.inputGroup}>
-          <label htmlFor={nameId}>Name</label>
-          <Field className={s.input} id={nameId} name="name" />
-          <ErrorMessage name="name" component="span" className={s.error} />
-        </div>
+    <form onSubmit={formik.handleSubmit} className={s.container}>
+      <h2 className={s.title}>Add contact</h2>
 
-        <div className={s.inputGroup}>
-          <label htmlFor={numberId}>Number</label>
-          <Field className={s.input} id={numberId} name="number" />
-          <ErrorMessage name="number" component="span" className={s.error} />
-        </div>
+      <TextField
+        fullWidth
+        id="name"
+        name="name"
+        label="Name"
+        value={formik.values.name}
+        onChange={formik.handleChange}
+        onBlur={formik.handleBlur}
+        error={formik.touched.name && Boolean(formik.errors.name)}
+        helperText={formik.touched.name && formik.errors.name}
+      />
 
-        <button type="submit" className={s.button}>
-          Add contact
-        </button>
-      </Form>
-    </Formik>
+      <TextField
+        fullWidth
+        id="number"
+        name="number"
+        label="Number"
+        type="text"
+        value={formik.values.number}
+        onChange={formik.handleChange}
+        onBlur={formik.handleBlur}
+        error={formik.touched.number && Boolean(formik.errors.number)}
+        helperText={formik.touched.number && formik.errors.number}
+      />
+
+      <LoadingButton
+        type="submit"
+        size="small"
+        loading={loading}
+        loadingIndicator="Loading…"
+        variant="outlined"
+        className={s.button}
+        sx={{
+          fontSize: 16,
+        }}>
+        <span>Add </span>
+      </LoadingButton>
+    </form>
   );
 }
