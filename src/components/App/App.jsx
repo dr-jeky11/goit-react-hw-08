@@ -15,7 +15,7 @@ const ContactsPage = lazy(() =>
   import("../../pages/ContactsPage/ContactsPage")
 );
 const RegistrationPage = lazy(() =>
-  import("../../pages/RegistrationPage/RegistrationPage")
+  import("../../pages/RegistrationPage.jsx/RegistrationPage")
 );
 const LoginPage = lazy(() => import("../../pages/LoginPage/LoginPage"));
 
