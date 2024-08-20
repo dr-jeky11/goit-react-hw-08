@@ -15,7 +15,7 @@ import {
 
 import { setCurrentContact } from "../../redux/contacts/slice";
 
-import css from "./EditForm.module.css";
+import s from "./EditForm.module.css";
 
 export default function EditForm() {
   const dispatch = useDispatch();
@@ -59,8 +59,8 @@ export default function EditForm() {
   };
 
   return (
-    <form onSubmit={formik.handleSubmit} className={css.container}>
-      <h2 className={css.title}>Edit contact</h2>
+    <form onSubmit={formik.handleSubmit} className={s.container}>
+      <h2 className={s.title}>Edit contact</h2>
 
       <TextField
         fullWidth
@@ -94,7 +94,7 @@ export default function EditForm() {
           loading={loading}
           loadingIndicator="Loading…"
           variant="outlined"
-          className={css.button}
+          className={s.button}
           sx={{
             fontSize: 16,
             marginRight: 1,
@@ -106,7 +106,7 @@ export default function EditForm() {
           variant="outlined"
           color="error"
           sx={{ fontSize: 15 }}
-          className={css.cancelButton}
+          className={s.cancelButton}
           onClick={onCancelClick}
           disabled={loading}>
           Cancel
