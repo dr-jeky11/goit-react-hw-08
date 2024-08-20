@@ -17,7 +17,7 @@ import {
 
 import EditForm from "../../components/EditForm/EditForm";
 
-import s from "./ContactPage.module.css";
+import s from "./ContactsPage.module.css";
 
 export default function Contactspage() {
   const contacts = useSelector(selectFilteredContacts);

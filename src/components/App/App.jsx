@@ -23,7 +23,7 @@ import RestrictedRoute from "../RestrictedRoute/RestrictedRoute";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
 import RefreshingUserLayout from "../RefreshingUserLayout/RefreshingUserLayout";
 import Loader from "../Loader/Loader";
-import NotFoundPage from "../../pages/NotFoundPage/NotFoundPage";
+import NotFoundPage from "../../pages/NotFoundPage.jsx/NotFoundPage";
 
 import { selectIsRefreshing } from "../../redux/auth/selectors";
 
