@@ -3,6 +3,7 @@
   flex-direction: column;
   max-width: 300px;
   margin-bottom: 25px;
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
 }
 
 .container label {
@@ -26,8 +27,8 @@
   height: 16px;
 
   position: absolute;
-  top: 6px;
-  right: 10px;
+  top: 18px;
+  right: 13px;
 }
 
 .closeBtn:hover svg {

@@ -1,17 +1,15 @@
 import { useDispatch, useSelector } from "react-redux";
 
-import { changeFilter, selectNameFilter } from "../../redux/filtersSlice";
-
-import { useId } from "react";
+import { selectNameFilter } from "../../redux/filters/selectors";
+import { changeFilter } from "../../redux/filters/slice";
 
 import s from "./SearchBox.module.css";
 
 import { AiOutlineCloseCircle } from "react-icons/ai";
+import { TextField } from "@mui/material";
 
 export default function SearchBox() {
   const dispatch = useDispatch();
-
-  const id = useId();
 
   const handleClearInput = () => {
     dispatch(changeFilter(""));
@@ -21,20 +19,24 @@ export default function SearchBox() {
 
   return (
     <div className={s.container}>
-      <label htmlFor={id}>Find contacts by name</label>
       <div className={s.inputWrapper}>
-        <input
-          className={s.search}
-          id={id}
-          type="text"
+        <TextField
+          fullWidth
+          name="name"
+          label="Search"
           value={value}
           onChange={(evt) => {
             dispatch(changeFilter(evt.target.value));
           }}
         />
-        <button className={s.closeBtn} type="button" onClick={handleClearInput}>
-          <AiOutlineCloseCircle size={16} />
-        </button>
+        {value.length > 0 && (
+          <button
+            className={s.closeBtn}
+            type="button"
+            onClick={handleClearInput}>
+            <AiOutlineCloseCircle size={18} />
+          </button>
+        )}
       </div>
     </div>
   );
