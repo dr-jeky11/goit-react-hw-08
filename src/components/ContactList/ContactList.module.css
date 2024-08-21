@@ -3,6 +3,9 @@
   display: flex;
   flex-wrap: wrap;
   gap: 15px;
+  p {
+    color: #b57281;
+  }
 }
 
 .item {

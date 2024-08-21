@@ -8,7 +8,7 @@ import { register } from "../../redux/auth/operations";
 import { selectLoading } from "../../redux/auth/selectors";
 import { TextField } from "@mui/material";
 
-import css from "./RegistrationForm.module.css";
+import s from "./RegistrationForm.module.css";
 
 export default function RegisterForm() {
   const loading = useSelector(selectLoading);
@@ -44,8 +44,8 @@ export default function RegisterForm() {
 
   return (
     <>
-      <form onSubmit={formik.handleSubmit} className={css.form}>
-        <h2 className={css.title}>Registration</h2>
+      <form onSubmit={formik.handleSubmit} className={s.form}>
+        <h2 className={s.title}>Registration</h2>
 
         <TextField
           fullWidth
@@ -89,8 +89,8 @@ export default function RegisterForm() {
           loading={loading}
           loadingIndicator="Loading…"
           variant="outlined"
-          className={css.btn}>
-          <span>Register</span>
+          className={s.btn}>
+          <span className={s.register}>Register</span>
         </LoadingButton>
       </form>
     </>

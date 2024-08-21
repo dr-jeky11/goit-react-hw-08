@@ -84,7 +84,7 @@ export default function ContactForm() {
         sx={{
           fontSize: 16,
         }}>
-        <span>Add </span>
+        <span className={s.add}>Add </span>
       </LoadingButton>
     </form>
   );

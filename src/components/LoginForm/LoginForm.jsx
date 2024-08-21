@@ -76,7 +76,7 @@ export default function LoginForm() {
           loadingIndicator="Loading…"
           variant="outlined"
           className={s.btn}>
-          <span>Log in</span>
+          <span className={s.login}>Log in</span>
         </LoadingButton>
       </form>
     </>
